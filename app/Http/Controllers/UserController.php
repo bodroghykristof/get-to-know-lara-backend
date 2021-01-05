@@ -86,4 +86,25 @@ class UserController extends Controller
     {
         //
     }
+
+    /**
+     * Login the user into the system
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function login(Request $request)
+    {
+        $email = $request->input('email');
+        $user = User::where('email', $email)->firstOr(function () {
+            error_log('wrong email');
+            return null;
+        });
+
+        $password = $request->input('password');
+        if (Hash::check($password, $user->password)) {
+            error_log('OOOK');
+        } else {
+            error_log('wrong pasword');}
+    }
 }
