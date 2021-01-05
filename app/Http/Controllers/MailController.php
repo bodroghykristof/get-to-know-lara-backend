@@ -22,11 +22,11 @@ class MailController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return Mail
      */
     public function store(Request $request)
     {
-        //
+        return Mail::create($request->all());
     }
 
     /**
