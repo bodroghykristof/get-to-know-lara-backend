@@ -9,7 +9,8 @@ class Mail extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    const CREATED_AT = 'created';
+    const UPDATED_AT = null;
 
     protected $fillable = [
         'id_user_from',

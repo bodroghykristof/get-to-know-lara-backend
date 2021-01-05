@@ -21,7 +21,9 @@ class CreateMailsTable extends Migration
             $table->string('message')->nullable();
             $table->boolean('is_read')->default(false);
             $table->timestamp('sent')->nullable();
-            $table->timestamp('created')->default(DB::raw('CURRENT_TIMESTAMP'));
+//            $table->timestamps();
+            $table->timestamp('created')->nullable();
+            $table->timestamp('created')->nullable();
         });
     }
 
