@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -14,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        error_log('got request');
     }
 
     /**
@@ -31,11 +32,12 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return User
      */
     public function store(Request $request)
     {
-        //
+        error_log('add user');
+        return User::create($request->all());
     }
 
     /**
