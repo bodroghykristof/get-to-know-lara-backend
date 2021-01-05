@@ -15,7 +15,13 @@ class CreateMailsTable extends Migration
     {
         Schema::create('mails', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('id_user_from')->constrained('users');
+            $table->foreignId('id_user_to')->constrained('users');
+            $table->string('subject')->nullable();
+            $table->string('message')->nullable();
+            $table->boolean('is_read')->default(false);
+            $table->timestamp('sent')->nullable();
+            $table->timestamp('created')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
