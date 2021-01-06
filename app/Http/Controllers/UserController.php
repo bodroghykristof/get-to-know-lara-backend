@@ -12,6 +12,16 @@ class UserController extends Controller
 {
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        return User::get("name");
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param Request $request

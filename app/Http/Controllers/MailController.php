@@ -32,7 +32,7 @@ class MailController extends Controller
             ->join('users', 'users.id', '=', 'mails.id_user_from')
             ->where("id_user_to", $userId)
             ->orderByDesc('sent')
-            ->select('mails.*', 'users.name as from', 'users.email as from_email')
+            ->select('mails.*', 'users.name as partner', 'users.email as partner_email')
             ->get();
     }
 
