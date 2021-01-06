@@ -47,6 +47,7 @@ class MailController extends Controller
         return DB::table('mails')
             ->join('users', 'users.id', '=', 'mails.id_user_from')
             ->where("id_user_from", $userId)
+            ->whereNotNull('sent')
             ->orderByDesc('sent')
             ->select('mails.*', 'users.name as partner', 'users.email as partner_email')
             ->get();
