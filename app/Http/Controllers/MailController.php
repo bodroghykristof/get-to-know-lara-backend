@@ -89,7 +89,10 @@ class MailController extends Controller
      */
     public function update(Request $request, Mail $mail)
     {
-        //
+        $mailModification = $request->except("finished");
+        $mail = Mail::where('id', $mail->id);
+        if ($request->input('finished')) $mailModification["sent"] = now();
+        $mail->update($mailModification);
     }
 
     /**
