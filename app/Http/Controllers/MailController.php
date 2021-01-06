@@ -26,7 +26,9 @@ class MailController extends Controller
      */
     public function inbox(int $userId)
     {
-        return Mail::where("id_user_to", $userId)->get();
+        return Mail::where("id_user_to", $userId)
+            ->orderByDesc('sent')
+            ->get();
     }
 
     /**
