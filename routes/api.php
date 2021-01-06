@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource("mails", "App\Http\Controllers\MailController");
 Route::get("mails/to/{userId}", "App\Http\Controllers\MailController@inbox");
 Route::get("mails/from/{userId}", "App\Http\Controllers\MailController@sent");
+Route::get("mails/drafts/{userId}", "App\Http\Controllers\MailController@sent");
 Route::get("/users", "App\Http\Controllers\UserController@index");
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

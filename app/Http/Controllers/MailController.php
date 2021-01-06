@@ -39,18 +39,21 @@ class MailController extends Controller
     /**
      * Display a mails sent by a given user.
      *
+     * @param Request $request
      * @param int $userId
      * @return Collection
      */
-    public function sent(int $userId)
+    public function sent(Request $request, int $userId)
     {
-        return DB::table('mails')
+        $indexOfRelevantSegment = 3;
+        $isDraft = $request->segment($indexOfRelevantSegment) === 'drafts';
+        $allSentMessages = DB::table('mails')
             ->join('users', 'users.id', '=', 'mails.id_user_from')
             ->where("id_user_from", $userId)
-            ->whereNotNull('sent')
             ->orderByDesc('sent')
-            ->select('mails.*', 'users.name as partner', 'users.email as partner_email')
-            ->get();
+            ->select('mails.*', 'users.name as partner', 'users.email as partner_email');
+        if (!$isDraft) return $allSentMessages->whereNotNull('sent')->get();
+        else return $allSentMessages->whereNull('sent')->get();
     }
 
     /**
