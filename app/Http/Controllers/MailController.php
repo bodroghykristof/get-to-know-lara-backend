@@ -60,7 +60,9 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
-        return Mail::create($request->all());
+        $mail = $request->all();
+        if ($request->input('finished')) $mail["sent"] = now();
+        Mail::create($mail);
     }
 
     /**
