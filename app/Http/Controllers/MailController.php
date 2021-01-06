@@ -73,11 +73,11 @@ class MailController extends Controller
      * Display the specified resource.
      *
      * @param Mail $mail
-     * @return Response
+     * @return Mail|Mail[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|Response
      */
     public function show(Mail $mail)
     {
-        //
+        return Mail::find($mail->id);
     }
 
     /**
