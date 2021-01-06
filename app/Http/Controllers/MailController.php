@@ -15,7 +15,18 @@ class MailController extends Controller
      */
     public function index()
     {
-        //
+        error_log("Got it");
+    }
+
+    /**
+     * Display a mails in user's inbox.
+     *
+     * @param int $userId
+     * @return void
+     */
+    public function inbox(int $userId)
+    {
+        return Mail::where("id_user_to", $userId)->get();
     }
 
     /**
