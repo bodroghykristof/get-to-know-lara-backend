@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    error_log(Auth::id());
     return view('welcome');
 });
+
+Route::post("/login", "App\Http\Controllers\UserController@login");
+Route::post("/register", "App\Http\Controllers\UserController@register");
