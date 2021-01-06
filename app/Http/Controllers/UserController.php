@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::get("name");
+        return User::get(["id", "name"]);
     }
 
     /**
