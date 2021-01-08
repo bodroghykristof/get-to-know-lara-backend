@@ -50,6 +50,7 @@ class UserController extends Controller
 
         if (Auth::attempt($request->all())) {
             error_log(Auth::id());
+            $request->session()->regenerate();
             error_log('OOOK');
         } else {
             error_log('wrong pasword');}
