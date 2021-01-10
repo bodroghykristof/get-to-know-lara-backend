@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
@@ -15,12 +16,14 @@ use App\Http\Controllers\MailController;
 |
 */
 
-Route::apiResource("mails", "App\Http\Controllers\MailController");
-Route::get("mails/to/{userId}", "App\Http\Controllers\MailController@inbox");
-Route::get("mails/from/{userId}", "App\Http\Controllers\MailController@sent");
-Route::get("mails/drafts/{userId}", "App\Http\Controllers\MailController@sent");
-Route::get("/users", "App\Http\Controllers\UserController@index");
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+], function ($router) {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
