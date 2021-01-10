@@ -178,7 +178,8 @@ return [
         /*
          * Help Service Providers...
          */
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class
 
     ],
 
@@ -215,6 +216,8 @@ return [
         'Http' => Illuminate\Support\Facades\Http::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Password' => Illuminate\Support\Facades\Password::class,
