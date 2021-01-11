@@ -22,9 +22,9 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         ->except(["index"]);
 
     Route::get("inbox", "App\Http\Controllers\MailController@inbox");
-    Route::get("mails/from/{userId}", "App\Http\Controllers\MailController@sent");
-    Route::get("mails/drafts/{userId}", "App\Http\Controllers\MailController@sent");
-    Route::get("/users", "App\Http\Controllers\UserController@index");
+    Route::get("sent", "App\Http\Controllers\MailController@sent");
+    Route::get("drafts", "App\Http\Controllers\MailController@sent");
+    Route::get("users", "App\Http\Controllers\UserController@index");
 
     }
 );

@@ -46,11 +46,12 @@ class MailController extends Controller
      */
     public function sent(Request $request)
     {
-        $indexOfRelevantSegment = 3;
+        $userId = auth()->user()->id;
+        $indexOfRelevantSegment = 2;
         $isDraft = $request->segment($indexOfRelevantSegment) === 'drafts';
         $allSentMessages = DB::table('mails')
             ->join('users', 'users.id', '=', 'mails.id_user_to')
-            ->where("id_user_from", 5)
+            ->where("id_user_from", $userId)
             ->orderByDesc('sent')
             ->select('mails.*', 'users.name as partner', 'users.email as partner_email');
         if (!$isDraft) return $allSentMessages->whereNotNull('sent')->get();
