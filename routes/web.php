@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    error_log(Auth::id());
-    return view('welcome');
+    $user = auth()->user();
+    error_log($user->id);
+    return $user;
 });
 
 Route::post("/login", "App\Http\Controllers\UserController@login");
