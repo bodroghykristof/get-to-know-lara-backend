@@ -67,6 +67,7 @@ class MailController extends Controller
     public function store(Request $request)
     {
         $mail = $request->all();
+        $mail["id_user_from"] = auth()->user()->id;
         if ($request->input('finished')) $mail["sent"] = now();
         Mail::create($mail);
     }
