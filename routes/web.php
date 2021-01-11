@@ -12,12 +12,3 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    $user = auth()->user();
-    error_log($user->id);
-    return $user;
-});
-
-Route::post("/login", "App\Http\Controllers\UserController@login");
-Route::post("/register", "App\Http\Controllers\UserController@register");
