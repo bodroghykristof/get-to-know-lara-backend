@@ -16,14 +16,21 @@ use App\Http\Controllers\MailController;
 |
 */
 
-Route::apiResource("mails", "App\Http\Controllers\MailController")->except(["index"]);
-Route::get("mails/to/{userId}", "App\Http\Controllers\MailController@inbox");
-Route::get("mails/from/{userId}", "App\Http\Controllers\MailController@sent");
-Route::get("mails/drafts/{userId}", "App\Http\Controllers\MailController@sent");
-Route::get("/users", "App\Http\Controllers\UserController@index");
+Route::group(['middleware' => ['jwt.verify']], function () {
+
+    Route::apiResource("mails", "App\Http\Controllers\MailController")
+        ->except(["index"]);
+
+    Route::get("mails/to/{userId}", "App\Http\Controllers\MailController@inbox");
+    Route::get("mails/from/{userId}", "App\Http\Controllers\MailController@sent");
+    Route::get("mails/drafts/{userId}", "App\Http\Controllers\MailController@sent");
+    Route::get("/users", "App\Http\Controllers\UserController@index");
+
+    }
+);
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => ['api'],
     'prefix' => 'auth'
 
 ], function ($router) {
